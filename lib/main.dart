@@ -80,43 +80,7 @@ class ImageLoginSignInButton extends StatelessWidget {
   }
 }
 
-class ImageUsername extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var assetImage = new AssetImage("assets/loginscreen/username.png");
-    var image = new Image(
-      image: assetImage,
-      width: 300.0,
-    );
-    return new Container(
-      padding: const EdgeInsets.all(10.0),
-      child: new Stack(
-        children: <Widget>[
-          image,
-        ],
-      ),
-    );
-  }
-}
 
-class ImagePassword extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    var assetImage = new AssetImage("assets/loginscreen/password.png");
-    var image = new Image(
-      image: assetImage,
-      width: 300.0,
-    );
-    return new Container(
-      padding: const EdgeInsets.only(bottom: 10.0),
-      child: new Stack(
-        children: <Widget>[
-          image,
-        ],
-      ),
-    );
-  }
-}
 
 class MyApp2 extends StatelessWidget {
   @override

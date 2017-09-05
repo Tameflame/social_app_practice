@@ -12,11 +12,17 @@ class _LoginButtonState extends State<LoginButton> {
     setState(() {
       //do something, probably sends login info to firebase for authentication
       Scaffold.of(context).removeCurrentSnackBar();
-      Scaffold.of(context).showSnackBar(new SnackBar(
-          content: new Text("Username: " +
-              DetailsHolder.getUsername() +
-              ", Password: " +
-              DetailsHolder.getPassword())));
+      if (DetailsHolder.getUsername().isEmpty ||
+          DetailsHolder.getPassword().isEmpty) {
+        Scaffold.of(context).showSnackBar(
+            new SnackBar(content: new Text("Please enter your details")));
+      } else {
+        Scaffold.of(context).showSnackBar(new SnackBar(
+            content: new Text("Username: " +
+                DetailsHolder.getUsername() +
+                ", Password: " +
+                DetailsHolder.getPassword())));
+      }
     });
   }
 
@@ -157,7 +163,10 @@ class _UsernameTextState extends State<UsernameText> {
                 controller: _textController,
                 onChanged: _isTouched,
                 onSubmitted: _submitText,
-                style: new TextStyle(color: Colors.white, fontSize: 15.0, fontFamily: "Montserrat"),
+                style: new TextStyle(
+                    color: Colors.white,
+                    fontSize: 15.0,
+                    fontFamily: "Montserrat"),
                 decoration: new InputDecoration(
                   hideDivider: true,
                 ),
@@ -220,8 +229,10 @@ class _PasswordTextState extends State<PasswordText> {
 //          ],
 //        ));
 
-    var textstyle =
-        new TextStyle(color: Colors.white, fontFamily: "Montserrat",);
+    var textstyle = new TextStyle(
+      color: Colors.white,
+      fontFamily: "Montserrat",
+    );
     var textfield = new TextField(
       controller: _textController,
       onChanged: _touched,
@@ -248,8 +259,8 @@ class _PasswordTextState extends State<PasswordText> {
 }
 
 class DetailsHolder {
-  static String _username;
-  static String _password;
+  static String _username = "";
+  static String _password = "";
 
   static void setUsername(String user) {
     _username = user;
