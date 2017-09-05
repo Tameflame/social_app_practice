@@ -11,6 +11,7 @@ class _LoginButtonState extends State<LoginButton> {
   void _onClicked() {
     setState(() {
       //do something, probably sends login info to firebase for authentication
+      Scaffold.of(context).removeCurrentSnackBar();
       Scaffold.of(context).showSnackBar(
           new SnackBar(content: new Text("You pressed the button!")));
     });
