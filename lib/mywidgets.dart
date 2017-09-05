@@ -12,8 +12,11 @@ class _LoginButtonState extends State<LoginButton> {
     setState(() {
       //do something, probably sends login info to firebase for authentication
       Scaffold.of(context).removeCurrentSnackBar();
-      Scaffold.of(context).showSnackBar(
-          new SnackBar(content: new Text("You pressed the button!")));
+      Scaffold.of(context).showSnackBar(new SnackBar(
+          content: new Text("Username: " +
+              DetailsHolder.getUsername() +
+              ", Password: " +
+              DetailsHolder.getPassword())));
     });
   }
 
@@ -39,6 +42,7 @@ class _LoginButtonState extends State<LoginButton> {
 //  static var assetImage2 = new AssetImage("assets/loginscreen/btn_press.png");
   static var assetImage = new AssetImage("assets/loginscreen/btn.png");
   static var image = new Image(image: assetImage, height: 50.0, width: 330.0);
+
 //  static var image2 = new Image(
 //    image: assetImage2,
 //    height: 50.0,
@@ -65,7 +69,7 @@ class _LoginButtonState extends State<LoginButton> {
 //              istouching = true;
 //            });
 //          },
-    //TODO: Need to change the login button image to one without text, install the Roboto text font, and draw the font on manually
+      //TODO: Need to change the login button image to one without text, install the Roboto text font, and draw the font on manually
       child: new Stack(
         children: <Widget>[
 //          image2,
@@ -145,13 +149,15 @@ class _UsernameTextState extends State<UsernameText> {
         children: <Widget>[
           image,
           new Container(
-              padding: const EdgeInsets.only(left: 50.0, top: 2.5),
+              padding: const EdgeInsets.only(
+                left: 50.0,
+              ),
               width: image.width - 50,
               child: new TextField(
                 controller: _textController,
                 onChanged: _isTouched,
                 onSubmitted: _submitText,
-                style: new TextStyle(color: Colors.white, fontSize: 15.0),
+                style: new TextStyle(color: Colors.white, fontSize: 15.0, fontFamily: "Montserrat"),
                 decoration: new InputDecoration(
                   hideDivider: true,
                 ),
@@ -215,7 +221,7 @@ class _PasswordTextState extends State<PasswordText> {
 //        ));
 
     var textstyle =
-        new TextStyle(color: Colors.white, fontWeight: FontWeight.bold);
+        new TextStyle(color: Colors.white, fontFamily: "Montserrat",);
     var textfield = new TextField(
       controller: _textController,
       onChanged: _touched,
@@ -223,9 +229,10 @@ class _PasswordTextState extends State<PasswordText> {
       style: textstyle,
       decoration: new InputDecoration(hideDivider: true),
       obscureText: true,
+      autocorrect: false,
     );
     var container2 = new Container(
-      padding: const EdgeInsets.only(left: 50.0, top: 2.5),
+      padding: const EdgeInsets.only(left: 50.0),
       width: image.width - 50,
       child: textfield,
     );

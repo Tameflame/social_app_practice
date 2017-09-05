@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
 //        title: new Text("Azam's Social App"),
 //      ),
       body: new Container(
-           padding: const EdgeInsets.only(top: 23.0),
+          padding: const EdgeInsets.only(top: 23.0),
           decoration: new BoxDecoration(
               image: new DecorationImage(
                   image: ImageLoginBackground.ast, fit: BoxFit.cover)),
