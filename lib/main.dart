@@ -15,8 +15,10 @@ class MyApp extends StatelessWidget {
 //        title: new Text("Azam's Social App"),
 //      ),
       body: new Container(
-        // padding: const EdgeInsets.only(top: 23.0),
-          decoration: new BoxDecoration(image: new DecorationImage(image: ImageLoginBackground.ast, fit: BoxFit.cover)),
+           padding: const EdgeInsets.only(top: 23.0),
+          decoration: new BoxDecoration(
+              image: new DecorationImage(
+                  image: ImageLoginBackground.ast, fit: BoxFit.cover)),
           child: new Stack(
             children: <Widget>[
               //new ImageLoginBackground(),
@@ -26,32 +28,39 @@ class MyApp extends StatelessWidget {
                       child: new Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          new Divider(height: 24.0,),
+                          new Divider(
+                            height: 24.0,
+                          ),
                           new UsernameText(),
-                          new Divider(height: 8.0,),
+                          new Divider(
+                            height: 8.0,
+                          ),
                           new PasswordText(),
                           new Divider(),
                           new LoginButton(),
                         ],
-                      )
-                  )
-              )
+                      )))
             ],
           )),
     );
   }
 }
 
-
 class ImageLoginBackground extends StatelessWidget {
-  static AssetImage ast = new AssetImage("assets/loginscreen/backgroundrock.png");
+  static AssetImage ast =
+      new AssetImage("assets/loginscreen/backgroundrock.png");
   static Image img = new Image(image: ast);
+
   @override
   Widget build(BuildContext context) {
     var assetImage = new AssetImage("assets/loginscreen/backgroundrock.png");
     return new Container(
       padding: const EdgeInsets.only(top: 0.0),
-      child: new Image(image: assetImage, width: 600.0, fit: BoxFit.cover,),
+      child: new Image(
+        image: assetImage,
+        width: 600.0,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }

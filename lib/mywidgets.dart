@@ -11,6 +11,8 @@ class _LoginButtonState extends State<LoginButton> {
   void _onClicked() {
     setState(() {
       //do something, probably sends login info to firebase for authentication
+      Scaffold.of(context).showSnackBar(
+          new SnackBar(content: new Text("You pressed the button!")));
     });
   }
 
@@ -33,51 +35,72 @@ class _LoginButtonState extends State<LoginButton> {
 //  Image imagebuilder (path) {
 //
 //  }
-  static var assetImage2 = new AssetImage("assets/loginscreen/btn_press.png");
+//  static var assetImage2 = new AssetImage("assets/loginscreen/btn_press.png");
   static var assetImage = new AssetImage("assets/loginscreen/btn.png");
   static var image = new Image(image: assetImage, height: 50.0, width: 330.0);
-  static var image2 = new Image(
-    image: assetImage2,
-    height: 50.0,
-    width: 330.0,
-  );
-  bool istouching = false;
+//  static var image2 = new Image(
+//    image: assetImage2,
+//    height: 50.0,
+//    width: 330.0,
+//  );
+
+//  bool istouching = false;
 
   @override
   Widget build(BuildContext context) {
     return new Container(
-        height: image.height,
-        width: image.width,
-        child: new Listener(
-          onPointerUp: (PointerUpEvent event) {
-            setState(() {
-              // image = new Image(image: assetImage, height: 50.0, width: 330.0);
-              istouching = false;
-            });
-          },
-          onPointerDown: (PointerDownEvent event) {
-            setState(() {
-              // image = new Image(image: assetImage2, height: 50.0, width: 330.0,);
-              istouching = true;
-            });
-          },
-          child: new Stack(
-            children: <Widget>[
-              image,
-              new Container(
-                height: image.height,
-                width: image.width,
-                child: new FlatButton(
-                  onPressed: _onClicked,
-                  child: new ConstrainedBox(
-                    constraints: new BoxConstraints.expand(),
-                    child: istouching ? image2 : image,
-                  ),
+      height: image.height,
+      width: image.width,
+//        child: new Listener(
+//          onPointerUp: (PointerUpEvent event) {
+//            setState(() {
+//              // image = new Image(image: assetImage, height: 50.0, width: 330.0);
+//              istouching = false;
+//            });
+//          },
+//          onPointerDown: (PointerDownEvent event) {
+//            setState(() {
+//              // image = new Image(image: assetImage2, height: 50.0, width: 330.0,);
+//              istouching = true;
+//            });
+//          },
+    //TODO: Need to change the login button image to one without text, install the Roboto text font, and draw the font on manually
+      child: new Stack(
+        children: <Widget>[
+//          image2,
+          new Container(
+            height: image.height,
+            width: image.width,
+            child: new FlatButton(
+              onPressed: _onClicked,
+              child: new ConstrainedBox(
+                constraints: new BoxConstraints.expand(),
+//                    child: istouching ? image2 : image,
+                child: new Stack(
+                  children: <Widget>[
+                    image,
+                    new Material(
+                      elevation: 10.0,
+                      color: Colors.transparent,
+                      child: new InkWell(
+                        onTap: () {
+                          _onClicked();
+                        },
+                        highlightColor: Colors.black45,
+                        splashColor: Colors.black45,
+                        child: new Container(
+                          color: Colors.transparent,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
-        ));
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
 
@@ -89,6 +112,7 @@ class UsernameText extends StatefulWidget {
 
 class _UsernameTextState extends State<UsernameText> {
   var _textController = new TextEditingController();
+
 //  bool _isComposing = false;
 
   void _submitText(String text) {
@@ -127,7 +151,9 @@ class _UsernameTextState extends State<UsernameText> {
                 onChanged: _isTouched,
                 onSubmitted: _submitText,
                 style: new TextStyle(color: Colors.white, fontSize: 15.0),
-                decoration: new InputDecoration(hideDivider: true,),
+                decoration: new InputDecoration(
+                  hideDivider: true,
+                ),
               ))
         ],
       ),
@@ -143,6 +169,7 @@ class PasswordText extends StatefulWidget {
 
 class _PasswordTextState extends State<PasswordText> {
   var _textController = new TextEditingController();
+
 //  bool _isComposing = false;
 
   void _submitText(String text) {
@@ -234,5 +261,39 @@ class DetailsHolder {
 
   static void submitDetails() {
     // Submits the details to the authenticator
+  }
+}
+
+class NewLogin extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new InkWell(
+        highlightColor: Colors.blue,
+        splashColor: Colors.amberAccent,
+        child: new Container(
+          width: 100.0,
+          height: 100.0,
+          decoration: new BoxDecoration(),
+          child: new Material(
+            elevation: 2.0,
+            child: new InkWell(
+              onTap: () {},
+              highlightColor: Colors.transparent,
+              splashColor: Colors.black26,
+//              child: new Container(
+//                width: 100.0,
+//                height: 100.0,
+//                color: Colors.transparent,
+//              ),
+            ),
+          ),
+//          child: new FlatButton(
+//              onPressed: () {
+////            Scaffold
+////                .of(context)
+////                .showSnackBar(new SnackBar(content: new Text("Ho")));
+//              },
+//              child: new Text("Sign in")),
+        ));
   }
 }

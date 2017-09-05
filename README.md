@@ -1,6 +1,6 @@
-# social_app_practice
+# Azam's Social App
 
-A new Flutter project.
+Just a place where I practice making flutter widgets and stuff
 
 ## Getting Started
 
