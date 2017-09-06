@@ -270,22 +270,3 @@ class MyLoginPage extends StatelessWidget {
         ));
   }
 }
-
-class ImageLoginBackground extends StatelessWidget {
-  static AssetImage ast =
-  new AssetImage("assets/loginscreen/backgroundrock.png");
-  static Image img = new Image(image: ast);
-
-  @override
-  Widget build(BuildContext context) {
-    var assetImage = new AssetImage("assets/loginscreen/backgroundrock.png");
-    return new Container(
-      padding: const EdgeInsets.only(top: 0.0),
-      child: new Image(
-        image: assetImage,
-        width: 600.0,
-        fit: BoxFit.cover,
-      ),
-    );
-  }
-}
