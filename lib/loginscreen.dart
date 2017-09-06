@@ -1,4 +1,4 @@
-// Some widgets
+// Imports
 import 'package:flutter/material.dart';
 
 
