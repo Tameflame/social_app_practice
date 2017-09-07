@@ -4,8 +4,8 @@ import 'main_view.dart';
 
 main() {
 
-  runApp(new MyLoginPage());
-  //runApp(new MainView());
+  //runApp(new MyLoginPage());
+  runApp(new MainView());
 }
 
 
@@ -17,3 +17,6 @@ class MyFont {
   static TextStyle montserrat = new TextStyle(fontFamily: "Montserrat");
 }
 
+class UserState {
+  static bool usertoken = false;
+}

@@ -17,7 +17,7 @@ class PageViewTrending extends StatelessWidget {
                   "Put trending articles and topics here, should be a mix of stuff the user follows and new stuff", style: MyFont.montserrat,),
             ),
             new Icon(
-              Icons.trending_up,
+              Icons.whatshot,
               size: 150.0,
               color: Colors.blue,
             )

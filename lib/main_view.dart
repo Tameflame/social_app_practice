@@ -10,13 +10,15 @@ import 'package:SocialApp/Explore.dart';
 class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MainTabView();
-//    return new MaterialApp(
-//      home: new MainTabView(),
-//      routes: <String, WidgetBuilder>{
-//        "/LoginPage": (BuildContext context) => new MyLoginPage(),
-//        // "/MainPage" : (BuildContext context) => new MainTabView(),
-//      },);
+//    return new MainTabView();
+    return new MaterialApp(
+      title: "Azam's Social App",
+      home: new PageToLandOn(),
+      routes: <String, WidgetBuilder>{
+        "/LoginPage": (BuildContext context) => new LoginPageConstructor(),
+        "/MainPage": (BuildContext context) => new MainTabView(),
+      },
+    );
   }
 }
 
@@ -32,7 +34,7 @@ class _MainTabViewState extends State<MainTabView>
   @override
   void initState() {
     super.initState();
-    _controller = new TabController(length: 3, vsync: this);
+    _controller = new TabController(length: 3, vsync: this, initialIndex: 1);
   }
 
   @override
@@ -44,6 +46,10 @@ class _MainTabViewState extends State<MainTabView>
 
   @override
   Widget build(BuildContext context) {
+    // This piece of logic checks if user has state
+    // Honestly this piece of code doesn't belong here.
+    // Maybe have another class which handles the logic, and let this class just
+    // contain MainTabView widgetbuilder
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(
@@ -53,11 +59,14 @@ class _MainTabViewState extends State<MainTabView>
         backgroundColor: Colors.blue,
         bottom: new TabBar(controller: _controller, tabs: [
           new Tab(
-            icon: new Icon(Icons.home),
+            icon: new Icon(Icons.whatshot),
           ),
           new Tab(
-            icon: new Icon(Icons.trending_up),
+            icon: new Icon(Icons.home),
           ),
+          // I probably want to replace this with a notifications tab
+          // Also, there are several notification icones, I shouold have
+          // a notifications Icon handler
           new Tab(
             icon: new Icon(Icons.explore),
           )
@@ -65,8 +74,8 @@ class _MainTabViewState extends State<MainTabView>
       ),
       body: new TabBarView(controller: _controller, children: [
         // Pages go here
-        new FeedPage(),
         new PageViewTrending(),
+        new FeedPage(),
         new PageViewExplore(),
       ]),
     );
@@ -89,17 +98,25 @@ class FeedPage extends StatelessWidget {
               ),
             ),
             new Divider(),
-            new IconButton(iconSize: 100.0,
+            new IconButton(
+                iconSize: 100.0,
                 icon: new Icon(
                   Icons.home,
                   color: Colors.blue,
                 ),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacementNamed(context, "/LoginPage");
                 }),
           ],
         ),
       ),
     );
+  }
+}
+
+class PageToLandOn extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return !UserState.usertoken ? new MyLoginPage() : new MainTabView();
   }
 }

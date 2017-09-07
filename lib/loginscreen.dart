@@ -39,6 +39,9 @@ class _LoginButtonState extends State<LoginButton> {
             )));
       } else {
 //        Navigator.of(context).pushNamed("/MainPage");
+//      Navigator.pushReplacementNamed(context, "/MainPage");
+      UserState.usertoken= true;
+      DetailsHolder.reset();
       Navigator.pushReplacementNamed(context, "/MainPage");
       }
     });
@@ -220,6 +223,11 @@ class DetailsHolder {
 
   static void submitDetails() {
     // Submits the details to the authenticator
+  }
+
+  static void reset() {
+    _username = "";
+    _password = "";
   }
 }
 
