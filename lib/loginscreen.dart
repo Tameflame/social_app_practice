@@ -1,6 +1,7 @@
 // Imports
 import 'package:flutter/material.dart';
-
+import 'main.dart';
+import 'main_view.dart';
 
 // Login Button
 class LoginButton extends StatefulWidget {
@@ -9,19 +10,36 @@ class LoginButton extends StatefulWidget {
 }
 
 class _LoginButtonState extends State<LoginButton> {
+//  void _onClicked() {
+//    setState(() {
+//      Scaffold.of(context).removeCurrentSnackBar();
+//      if (DetailsHolder.getUsername().isEmpty ||
+//          DetailsHolder.getPassword().isEmpty) {
+//        Scaffold.of(context).showSnackBar(
+//            new SnackBar(content: new Text("Please enter your details")));
+//      } else {
+//        Scaffold.of(context).showSnackBar(new SnackBar(
+//            content: new Text("Username: " +
+//                DetailsHolder.getUsername() +
+//                " Password: " +
+//                DetailsHolder.getPassword(),)));
+//      }
+//    });
+//  }
+
   void _onClicked() {
     setState(() {
-      Scaffold.of(context).removeCurrentSnackBar();
       if (DetailsHolder.getUsername().isEmpty ||
           DetailsHolder.getPassword().isEmpty) {
-        Scaffold.of(context).showSnackBar(
-            new SnackBar(content: new Text("Please enter your details")));
-      } else {
+        Scaffold.of(context).removeCurrentSnackBar();
         Scaffold.of(context).showSnackBar(new SnackBar(
-            content: new Text("Username: " +
-                DetailsHolder.getUsername() +
-                " Password: " +
-                DetailsHolder.getPassword(),)));
+                content: new Text(
+              "Please enter your details",
+              style: MyFont.montserrat,
+            )));
+      } else {
+//        Navigator.of(context).pushNamed("/MainPage");
+      Navigator.pushReplacementNamed(context, "/MainPage");
       }
     });
   }
@@ -227,46 +245,54 @@ class NewLogin extends StatelessWidget {
   }
 }
 
-
 // Login Screen View
-
-
 
 class MyLoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    AssetImage loginBackgroundAsset =
-    new AssetImage("assets/loginscreen/backgroundrock.png");
     return new MaterialApp(
-        title: "Azam's Social App",
-        home: new Scaffold(
-          body: new Container(
-              padding: const EdgeInsets.only(top: 23.0),
-              decoration: new BoxDecoration(
-                  image: new DecorationImage(
-                      image: loginBackgroundAsset, fit: BoxFit.cover)),
-              child: new Stack(
-                children: <Widget>[
-                  new Center(
-                      child: new Container(
-                          padding: const EdgeInsets.only(top: 100.0),
-                          child: new Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              new Divider(
-                                height: 24.0,
-                              ),
-                              new UsernameText(),
-                              new Divider(
-                                height: 8.0,
-                              ),
-                              new PasswordText(),
-                              new Divider(),
-                              new LoginButton(),
-                            ],
-                          )))
-                ],
-              )),
-        ));
+      title: "Azam's Social App",
+      routes: <String, WidgetBuilder>{
+        "/MainPage": (BuildContext context) => new MainView(),
+      },
+      home: new LoginPageConstructor(),
+    );
+  }
+}
+
+class LoginPageConstructor extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    AssetImage loginBackgroundAsset =
+        new AssetImage("assets/loginscreen/backgroundrock.png");
+    return new Scaffold(
+      body: new Container(
+          padding: const EdgeInsets.only(top: 23.0),
+          decoration: new BoxDecoration(
+              image: new DecorationImage(
+                  image: loginBackgroundAsset, fit: BoxFit.cover)),
+          child: new Stack(
+            children: <Widget>[
+              new Center(
+                  child: new Container(
+                      padding: const EdgeInsets.only(top: 100.0),
+                      child: new Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          new Divider(
+                            height: 24.0,
+                          ),
+                          new UsernameText(),
+                          new Divider(
+                            height: 8.0,
+                          ),
+                          new PasswordText(),
+                          new Divider(),
+                          new LoginButton(),
+                        ],
+                      )))
+            ],
+          )),
+    );
   }
 }
